@@ -16,52 +16,52 @@ func init() {
 
 func BenchmarkAddBits(b *testing.B) {
 	for a, b := range numbers[uint64](1, 10_000) {
-		Use(bits.Add64(a, b, 0))
+		use(bits.Add64(a, b, 0))
 	}
 }
 
 func BenchmarkAdd(b *testing.B) {
 	for a, b := range numbers[uint64](1, 10_000) {
-		Use(Add(a, b))
+		use(Add(a, b))
 	}
 }
 
 func BenchmarkSubBits(b *testing.B) {
 	for a, b := range numbers[uint64](1, 10_000) {
-		Use(bits.Sub64(a, b, 0))
+		use(bits.Sub64(a, b, 0))
 	}
 }
 
 func BenchmarkSub(b *testing.B) {
 	for a, b := range numbers[uint64](1, 10_000) {
-		Use(Sub(a, b))
+		use(Sub(a, b))
 	}
 }
 
 func BenchmarkMulBits(b *testing.B) {
 	for a, b := range numbers[uint64](1, 10_000) {
-		Use(bits.Mul64(a, b))
+		use(bits.Mul64(a, b))
 	}
 }
 
 func BenchmarkMul(b *testing.B) {
 	for a, b := range numbers[uint64](1, 10_000) {
-		Use(Mul(a, b))
+		use(Mul(a, b))
 	}
 }
 
 func BenchmarkDivBits(b *testing.B) {
 	for a, b := range numbers[uint64](1, 10_000) {
-		Use(bits.Div64(0, a, b))
+		use(bits.Div64(0, a, b))
 	}
 }
 
 func BenchmarkDiv(b *testing.B) {
 	for a, b := range numbers[uint64](1, 10_000) {
-		Use(Div(a, b))
+		use(Div(a, b))
 	}
 }
 
-func Use(args ...any) {
+func use(args ...any) {
 	runtime.KeepAlive(args)
 }
