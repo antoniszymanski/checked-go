@@ -50,6 +50,12 @@ func BenchmarkMul(b *testing.B) {
 	}
 }
 
+func BenchmarkMul64(b *testing.B) {
+	for a, b := range numbers[uint64](1, 10_000) {
+		use(mulUint64(a, b))
+	}
+}
+
 func BenchmarkDivBits(b *testing.B) {
 	for a, b := range numbers[uint64](1, 10_000) {
 		use(bits.Div64(0, a, b))
