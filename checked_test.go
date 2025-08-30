@@ -106,16 +106,6 @@ func TestDiv(t *testing.T) {
 	}
 }
 
-// func TestQuotient(t *testing.T) {
-// 	q, r, ok := Quotient(100, 3)
-// 	if r != 1 || q != 33 || !ok {
-// 		t.Errorf("expected 100/3 => 33, r=1")
-// 	}
-// 	if _, _, ok = Quotient(1, 0); ok {
-// 		t.Error("unexpected lack of failure")
-// 	}
-// }
-
 func inRange(x *int64) bool {
 	ok := math.MinInt8 <= *x && *x <= math.MaxInt8
 	if !ok {
