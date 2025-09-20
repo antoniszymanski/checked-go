@@ -61,14 +61,14 @@ func Cast[Y, X Integer](x X) (y Y, ok bool) {
 }
 
 func Min[T Integer]() T {
-	if minusOne := T(0) - 1; minusOne > 0 { // signed integer
+	if minusOne := T(0) - 1; minusOne < 0 { // signed integer
 		return minusOne << (unsafe.Sizeof(minusOne)*8 - 1)
 	}
 	return T(0)
 }
 
 func Max[T Integer]() T {
-	if minusOne := T(0) - 1; minusOne > 0 { // signed integer
+	if minusOne := T(0) - 1; minusOne < 0 { // signed integer
 		return 1<<(unsafe.Sizeof(minusOne)*8-1) - 1
 	}
 	return ^T(0)
