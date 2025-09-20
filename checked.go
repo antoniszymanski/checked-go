@@ -28,11 +28,11 @@ func Sub[T Integer](a, b T) (T, bool) {
 }
 
 func Div[T Integer](a, b T) (T, bool) {
-	q, _, ok := Quotient(a, b)
+	q, _, ok := DivMod(a, b)
 	return q, ok
 }
 
-func Quotient[T Integer](a, b T) (T, T, bool) {
+func DivMod[T Integer](a, b T) (T, T, bool) {
 	if b == 0 {
 		return 0, 0, false
 	}
