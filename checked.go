@@ -28,8 +28,15 @@ func Sub[T Integer](a, b T) (T, bool) {
 }
 
 func Div[T Integer](a, b T) (T, bool) {
-	q, _, ok := DivMod(a, b)
-	return q, ok
+	if b == 0 {
+		return 0, false
+	}
+	minusOne := T(0) - 1
+	isSigned := minusOne < 0
+	if isSigned && a == minusOne<<(unsafe.Sizeof(minusOne)*8-1) && b == minusOne {
+		return 0, false
+	}
+	return a / b, true
 }
 
 func DivMod[T Integer](a, b T) (T, T, bool) {
