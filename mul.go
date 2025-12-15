@@ -49,70 +49,70 @@ func Mul[T Integer](x, y T) (T, bool) {
 	}
 }
 
-func mulUint8[T ~uint8](x, y T) (T, bool) {
+func mulUint8(x, y uint8) (uint8, bool) {
 	z := uint16(x) * uint16(y)
 	if z <= math.MaxUint8 {
-		return T(z), true
+		return uint8(z), true
 	} else {
 		return 0, false
 	}
 }
 
-func mulInt8[T ~int8](x, y T) (T, bool) {
+func mulInt8(x, y int8) (int8, bool) {
 	z := int16(x) * int16(y)
 	if math.MinInt8 <= z && z <= math.MaxInt8 {
-		return T(z), true
+		return int8(z), true
 	} else {
 		return 0, false
 	}
 }
 
-func mulUint16[T ~uint16](x, y T) (T, bool) {
+func mulUint16(x, y uint16) (uint16, bool) {
 	z := uint32(x) * uint32(y)
 	if z <= math.MaxUint16 {
-		return T(z), true
+		return uint16(z), true
 	} else {
 		return 0, false
 	}
 }
 
-func mulInt16[T ~int16](x, y T) (T, bool) {
+func mulInt16(x, y int16) (int16, bool) {
 	z := int32(x) * int32(y)
 	if math.MinInt16 <= z && z <= math.MaxInt16 {
-		return T(z), true
+		return int16(z), true
 	} else {
 		return 0, false
 	}
 }
 
-func mulUint32[T ~uint32](x, y T) (T, bool) {
+func mulUint32(x, y uint32) (uint32, bool) {
 	z := uint64(x) * uint64(y)
 	if z <= math.MaxInt32 {
-		return T(z), true
+		return uint32(z), true
 	} else {
 		return 0, false
 	}
 }
 
-func mulInt32[T ~int32](x, y T) (T, bool) {
+func mulInt32(x, y int32) (int32, bool) {
 	z := int64(x) * int64(y)
 	if math.MinInt32 <= z && z <= math.MaxInt32 {
-		return T(z), true
+		return int32(z), true
 	} else {
 		return 0, false
 	}
 }
 
-func mulUint64[T ~uint64](x, y T) (T, bool) {
+func mulUint64(x, y uint64) (uint64, bool) {
 	hi, lo := bits.Mul64(uint64(x), uint64(y))
 	if hi == 0 {
-		return T(lo), true
+		return uint64(lo), true
 	} else {
 		return 0, false
 	}
 }
 
-func mulInt64[T ~int64](x, y T) (T, bool) {
+func mulInt64(x, y int64) (int64, bool) {
 	neg := (x < 0) != (y < 0)
 	if x < 0 {
 		x = -x
@@ -133,5 +133,5 @@ func mulInt64[T ~int64](x, y T) (T, bool) {
 	if neg {
 		z = -z
 	}
-	return T(z), true
+	return int64(z), true
 }
