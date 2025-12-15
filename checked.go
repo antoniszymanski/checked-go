@@ -11,49 +11,49 @@ type Integer interface {
 	~int | ~int8 | ~int16 | ~int32 | ~int64 | ~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr
 }
 
-func Add[T Integer](a, b T) (T, bool) {
-	c := a + b
-	if (c > a) == (b > 0) {
-		return c, true
+func Add[T Integer](x, y T) (T, bool) {
+	z := x + y
+	if (z > x) == (y > 0) {
+		return z, true
 	}
 	return 0, false
 }
 
-func Sub[T Integer](a, b T) (T, bool) {
-	c := a - b
-	if (c < a) == (b > 0) {
-		return c, true
+func Sub[T Integer](x, y T) (T, bool) {
+	z := x - y
+	if (z < x) == (y > 0) {
+		return z, true
 	}
 	return 0, false
 }
 
-func Div[T Integer](a, b T) (T, bool) {
-	if b == 0 {
+func Div[T Integer](x, y T) (T, bool) {
+	if y == 0 {
 		return 0, false
 	}
 	minusOne := T(0) - 1
 	isSigned := minusOne < 0
-	if isSigned && a == minusOne<<(unsafe.Sizeof(minusOne)*8-1) && b == minusOne {
+	if isSigned && x == minusOne<<(unsafe.Sizeof(minusOne)*8-1) && y == minusOne {
 		return 0, false
 	}
-	return a / b, true
+	return x / y, true
 }
 
-func DivMod[T Integer](a, b T) (T, T, bool) {
-	if b == 0 {
+func DivMod[T Integer](x, y T) (T, T, bool) {
+	if y == 0 {
 		return 0, 0, false
 	}
 	minusOne := T(0) - 1
 	isSigned := minusOne < 0
-	if isSigned && a == minusOne<<(unsafe.Sizeof(minusOne)*8-1) && b == minusOne {
+	if isSigned && x == minusOne<<(unsafe.Sizeof(minusOne)*8-1) && y == minusOne {
 		return 0, 0, false
 	}
-	return a / b, a % b, true
+	return x / y, x % y, true
 }
 
-func Cast[Y, X Integer](x X) (y Y, ok bool) {
+func Cast[Y, X Integer](x X) (Y, bool) {
+	y := Y(x)
 	hasSameType := unsafe.Sizeof(x) == unsafe.Sizeof(y) && (X(0)-1 < 0) == (Y(0)-1 < 0)
-	y = Y(x)
 	if X(y) == x && (hasSameType || (x < 0) == (y < 0)) {
 		return y, true
 	}
