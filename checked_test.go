@@ -62,6 +62,7 @@ func testOp(
 	op func(x, y int8) (z int8, ok bool),
 	opQword func(x, y int64) int64,
 ) {
+	t.Helper()
 	for x, y := range allNumbers[int8] {
 		gotValue, gotOk := op(x, y)
 		wantValue, wantOk := expectedQword(x, y, opQword)
@@ -130,6 +131,7 @@ func fuzzOp(
 	op func(x, y int64) (z int64, ok bool),
 	opBig func(z *big.Int, x *big.Int, y *big.Int) *big.Int,
 ) {
+	f.Helper()
 	f.Fuzz(func(t *testing.T, x, y int64) {
 		gotValue, gotOk := op(x, y)
 		wantValue, wantOk := expectedBig(x, y, opBig)
@@ -237,12 +239,14 @@ func range2[T Integer](start, end T) iter.Seq2[T, T] {
 }
 
 func checkResult1[T Integer](t *testing.T, opName string, want, got T) {
+	t.Helper()
 	if got != want {
 		t.Errorf("%s = %d, should be %d", opName, got, want)
 	}
 }
 
 func checkResult2[T Integer](t *testing.T, opName string, x, y, gotValue T, gotOk bool, wantValue T, wantOk bool) {
+	t.Helper()
 	if gotValue != wantValue || gotOk != wantOk {
 		t.Errorf("%s(%d, %d) = (%d, %t), should be (%d, %t)", opName, x, y, gotValue, gotOk, wantValue, wantOk)
 	}

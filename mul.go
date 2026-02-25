@@ -104,7 +104,7 @@ func mulInt32(x, y int32) (int32, bool) {
 }
 
 func mulUint64(x, y uint64) (uint64, bool) {
-	hi, lo := bits.Mul64(uint64(x), uint64(y))
+	hi, lo := bits.Mul64(x, y)
 	if hi == 0 {
 		return lo, true
 	} else {
